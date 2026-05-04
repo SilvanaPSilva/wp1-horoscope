@@ -1,4 +1,5 @@
-require('dotenv').config(); // Load environment variables from the .env file
+require('dotenv').config();
+
 const express = require('express');
 const app = express(); // Create an instance of the Express application
 
