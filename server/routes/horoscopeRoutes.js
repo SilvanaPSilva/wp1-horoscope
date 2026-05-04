@@ -1,44 +1,18 @@
 const express = require('express'); // Import the Express library
 const router = express.Router(); // Create a new router object to define routes for the horoscope API
 
-// Import the horoscopeService functions from the horoscopeClient.js file
-const { horoscopeService } = require('../api/horoscopeClient'); 
+// Import the horoscopeController to handle the logic for each route
+const controller = require('../controllers/horoscopeController'); 
 
-// TODAY >>> Define a route TODAY's 
-router.get('/today/:sign', async (req, res) => {
-    const {sign} = req.params; // Get the zodiac sign from the URL parameters
+// Define routes for today's, tomorrow's, and monthly horoscope predictions
+router.get('/today/:sign', controller.getToday);
+router.get('/tomorrow/:sign', controller.getTomorrow);
+router.get('/monthly/:sign', controller.getMonthly);
 
-    try {
-        const result = await horoscopeService.getTodayHoroscope(sign);
-        res.json(result);
-    } catch (error) {
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
+// Export the router to be used in the main server file (index.js)
+module.exports = router; 
 
-// TOMORROW >>> Define a route TOMORROW's
-router.get('/tomorrow/:sign', async (req, res) => {
-    const {sign} = req.params; // Get the zodiac sign from the URL parameters
-
-    try {
-        const result = await horoscopeService.getTomorrowHoroscope(sign);
-        res.json(result);
-    } catch (error) {
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
-
-// MONTH >>> Define a route MONTHLY's
-router.get('/monthly/:sign', async (req, res) => {
-    const {sign} = req.params; // Get the zodiac sign from the URL parameters
-
-    try {
-        const result = await horoscopeService.getMonthlyHoroscope(sign);
-        res.json(result);
-    } catch (error) {
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
-
-module.exports = router; // Export the router to be used in the main server file (index.js)
-
+// The Horoscope routes was devide into two files: horoscopeRoutes.js and horoscopeController.js.
+// The Routes file defines the endpoints
+// The Controller file contains the logic for handling the requests and responses.
+// This separation of concerns helps to keep the code organized and maintainable.

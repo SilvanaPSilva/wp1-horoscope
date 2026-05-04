@@ -18,6 +18,8 @@ const endpointToday = '/sun_sign_prediction/daily/:zodiacName'; // Example endpo
 const endpointTomorrow = '/sun_sign_prediction/daily/next/:zodiacName'; // Example endpoint for tomorrow's prediction
 const endpointMonth = '/horoscope_prediction/monthly/:zodiacName'; // Example endpoint for monthly horoscope prediction
 
+
+// Function to call the Astrology API (https://json.astrologyapi.com/v1) + endpoint (sun_sign_prediction/daily,tomorrow, monthly) + zodiac sign
 async function callAstrologyApi(endpoint, sign) {
   const finalUrl = apiUrl+endpoint.replace(':zodiacName', sign); // Replace ':zodiacName' with the actual zodiac sign
   //const headers = { Authorization: `Basic ${auth}`,'Content-Type': 'application/json'};
