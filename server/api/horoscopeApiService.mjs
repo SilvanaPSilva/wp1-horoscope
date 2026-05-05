@@ -1,7 +1,8 @@
-const axios = require('axios');
+import axios from 'axios';
 
 // API Key - Access Token from .env file
 const apiKey = process.env.ASTRO_API_KEY;
+
 //console.log('API KEY:', apiKey);
 
 // API URL
@@ -21,14 +22,14 @@ const endpointMonth = '/horoscope_prediction/monthly/:zodiacName'; // Example en
 
 // Function to call the Astrology API (https://json.astrologyapi.com/v1) + endpoint (sun_sign_prediction/daily,tomorrow, monthly) + zodiac sign
 async function callAstrologyApi(endpoint, sign) {
-  const finalUrl = apiUrl+endpoint.replace(':zodiacName', sign); // Replace ':zodiacName' with the actual zodiac sign
+  const finalUrl = apiUrl+endpoint.replace(':zodiacName', sign); 
+
   //const headers = { Authorization: `Basic ${auth}`,'Content-Type': 'application/json'};
   const headers = { 'x-astrologyapi-key': apiKey,'Content-Type': 'application/json'};
 
 
   try{
-    const response = await axios.post(finalUrl,{timezone: 0.0},{headers}); // Default timezone is 0.0 is Ireland
-    
+    const response = await axios.post(finalUrl,{timezone: 0.0},{headers}); // Default timezone is 0.0 is Ireland    
     return response.data;
 
     } catch (error) {
@@ -50,5 +51,4 @@ function getMonthlyHoroscope(sign) {
   return callAstrologyApi(endpointMonth, sign);
 }
 
-module.exports = {horoscopeService:{ getTodayHoroscope, getTomorrowHoroscope, getMonthlyHoroscope
-}};
+export const horoscopeService = { getTodayHoroscope, getTomorrowHoroscope, getMonthlyHoroscope };
