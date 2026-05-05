@@ -1,7 +1,10 @@
 import 'dotenv/config';
 import express from 'express';
 import cors from 'cors'; // Import the CORS middleware to enable Cross-Origin Resource Sharing
+
 import horoscopeRoutes from './routes/horoscopeRoutes.mjs';
+import memberRoutes from './routes/memberRoutes.mjs';
+
 
 // Create an instance of the Express application
 const app = express(); 
@@ -12,6 +15,7 @@ app.use(express.json());
 
 //Routes
 app.use('/horoscope', horoscopeRoutes);
+app.use('/members', memberRoutes);
 
 // Tester if the server(3000) is running 
 app.get('/', (req, res) => {
