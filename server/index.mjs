@@ -1,10 +1,9 @@
 import 'dotenv/config';
 import express from 'express';
-import cors from 'cors'; // Import the CORS middleware to enable Cross-Origin Resource Sharing
+import cors from 'cors';
 
 import horoscopeRoutes from './routes/horoscopeRoutes.mjs';
 import memberRoutes from './routes/memberRoutes.mjs';
-
 
 // Create an instance of the Express application
 const app = express(); 

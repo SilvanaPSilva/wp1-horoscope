@@ -1,7 +1,6 @@
 import express from 'express'; // Import the Express library
 import { getToday, getTomorrow, getMonthly } from '../controllers/horoscopeController.mjs';
 
-
 const router = express.Router();
 
 // Define routes for today's, tomorrow's, and monthly horoscope predictions
