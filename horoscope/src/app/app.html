@@ -5,18 +5,20 @@
       <h1>Hello, {{ title() }}</h1>
       <p>Congratulations! Your app is running. 🎉</p>
 
-      <app-home></app-home>
-      <app-favourites></app-favourites>
-      <app-about></app-about>
-      <app-list></app-list>
-      <app-add></app-add>     
+      <nav class="navbar">
+        <a routerLink="/">Home</a>
+
+        <a routerLink="/favourites">Favourites</a>
+
+        <a routerLink="/about">About</a>
+      </nav>
+      <hr>
 
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
     <div class="right-side"> </div>
-      <div class="pill-group"> </div>
+    <div class="pill-group"> </div>
   </div>
 </main>
 
 <router-outlet></router-outlet>
-  
