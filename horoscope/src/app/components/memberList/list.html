@@ -1,1 +1,17 @@
-<p>list works!</p>
+<p>List Members</p>
+
+@for (member of members(); track member._id){
+
+<div class="member-card">
+    <p>Member ID: {{member._id}}</p>
+    <p>Name: {{member.name}}</p>
+    <p>Birthday: {{member.birthday}}</p>
+    <p>Sign: {{member.sign}}</p>
+    <button (click)="deleteMember(member._id)"
+        style="background: red; color: white; padding: 8px; margin-bottom: 20px;">
+        DELETE TEST
+    </button>
+    <!-- <button (click)="deleteMember(member._id)" class="btn btn-danger">Delete</button> -->
+</div>
+
+}

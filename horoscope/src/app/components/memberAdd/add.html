@@ -1,1 +1,42 @@
-<p>add works!</p>
+<div class="card shadow-sm p-4 mb-4 mx-auto" >
+  <h3 class="text-center mb-4">Favorites Members Form</h3>
+
+  <div class="row mb-3 align-items-end">
+    <label class="col-sm-3 col-form-label">Name</label>
+    <div class="col-sm-9">
+      <input [(ngModel)]="member.name" class="form-control" placeholder="Enter Member Name">
+    </div>
+  </div>
+
+  <div class="row mb-3 align-items-end">
+    <label class="col-sm-3 col-form-label">Birthday</label>
+    <div class="col-sm-9">
+      <input [(ngModel)]="member.birthday" class="form-control" placeholder="Enter Birthday">
+    </div>
+  </div>
+
+  <div class="row mb-3 align-items-end">
+    <label class="col-sm-3 col-form-label">Sign</label>
+    <div class="col-sm-9">
+      <input [(ngModel)]="member.sign" class="form-control" placeholder="Enter Zodiac Sign">
+    </div>
+  </div>  
+
+  <button (click)="addMember()" class="btn btn-primary">New Member</button>
+  
+</div>
+
+
+<!--  
+
+// 
+
+Bootstrap classes:
+> shadow-lg / shadow / shadow-sm = add large, medium and small shadow to the card
+> p-4 adds padding of 4 units to the card
+> mb-3 adds a margin-bottom of 3 units to the card
+> mx-auto centers the card horizontally
+> max-width: 500px limits the maximum width of the card to 500 pixels
+> text-center centers the text horizontally
+
+-->
