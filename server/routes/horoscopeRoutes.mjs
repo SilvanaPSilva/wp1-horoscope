@@ -15,3 +15,7 @@ export default router;
 // The Routes file defines the endpoints
 // The Controller file contains the logic for handling the requests and responses.
 // This separation of concerns helps to keep the code organized and maintainable.
+
+//https://json.astrologyapi.com/v1/sun_sign_prediction/daily/:zodiacName
+//https://json.astrologyapi.com/v1/sun_sign_prediction/daily/next/:zodiacName
+//https://json.astrologyapi.com/v1/horoscope_prediction/monthly/:zodiacName

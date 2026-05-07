@@ -1,1 +1,102 @@
-<p>home works!</p>
+@if (loading) {
+  <p>Loading horoscope...</p>
+}
+
+<div>    
+    <button (click)="getToday()" [disabled]="loading">Today</button>
+    <button (click)="getTomorrow()" [disabled]="loading">Tomorrow</button>
+    <button (click)="getMonthly()" [disabled]="loading">Monthly</button>
+</div>
+
+
+<p>Choose your sign:</p>
+
+<div>
+
+    <label>
+        <input type="radio" name="sign" value="aries" [(ngModel)]="sign">
+        ♈ Aries
+    </label>
+
+    <label>
+        <input type="radio" name="sign" value="taurus" [(ngModel)]="sign">
+        ♉ Taurus
+    </label>
+
+    <label>
+        <input type="radio" name="sign" value="gemini" [(ngModel)]="sign">
+        ♊ Gemini
+    </label>
+
+    <label>
+        <input type="radio" name="sign" value="cancer" [(ngModel)]="sign">
+        ♋ Cancer
+    </label>
+
+    <label>
+        <input type="radio" name="sign" value="leo" [(ngModel)]="sign">
+        ♌ Leo
+    </label>
+
+    <label>
+        <input type="radio" name="sign" value="virgo" [(ngModel)]="sign">
+        ♍ Virgo
+    </label>
+
+    <label>
+        <input type="radio" name="sign" value="libra" [(ngModel)]="sign">
+        ♎ Libra
+    </label>
+
+    <label>
+        <input type="radio" name="sign" value="scorpio" [(ngModel)]="sign">
+        ♏ Scorpio
+    </label>
+
+    <label>
+        <input type="radio" name="sign" value="sagittarius" [(ngModel)]="sign">
+        ♐ Sagittarius
+    </label>
+
+    <label>
+        <input type="radio" name="sign" value="capricorn" [(ngModel)]="sign">
+        ♑ Capricorn
+    </label>
+
+    <label>
+        <input type="radio" name="sign" value="aquarius" [(ngModel)]="sign">
+        ♒ Aquarius
+    </label>
+
+    <label>
+        <input type="radio" name="sign" value="pisces" [(ngModel)]="sign">
+        ♓ Pisces
+    </label>
+
+</div>
+
+@if (horoscopeResult){
+
+<div>
+    <h3>{{ horoscopeResult.sun_sign }}</h3>
+    <p>Date: {{ horoscopeResult.prediction_date }}</p>
+
+    <h4>Personal Life</h4>
+    <p>{{ horoscopeResult.prediction.personal_life }}</p>
+
+    <h4>Profession</h4>
+    <p>{{ horoscopeResult.prediction.profession }}</p>
+
+    <h4>Health</h4>
+    <p>{{ horoscopeResult.prediction.health }}</p>
+
+    <h4>Emotions</h4>
+    <p>{{ horoscopeResult.prediction.emotions }}</p>
+
+    <h4>Travel</h4>
+    <p>{{ horoscopeResult.prediction.travel }}</p>
+
+    <h4>Luck</h4>
+    <p>{{ horoscopeResult.prediction.luck }}</p>
+</div>
+}
