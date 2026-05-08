@@ -1,18 +1,14 @@
-# ASTRO 🌙
-
+# ASTRO 
 ASTRO is a Full Stack Horoscope Web Application built with Angular, Express and MongoDB.
 
 ---
 
-## 🚀 Technologies
 
 ### Frontend
-- Angular Standalone Components
-- Angular Routing
-- Angular HttpClient
-- Bootstrap (https://getbootstrap.com/)
+- Angular Standalone Components, Routing and HttpClient
 - Signals
 - FormsModule
+- Bootstrap (https://getbootstrap.com/)
 
 ### Backend
 - Node.js
@@ -42,7 +38,7 @@ ASTRO is a Full Stack Horoscope Web Application built with Angular, Express and 
 
 ---
 
-# 🧠 Architecture
+# Architecture
 
 Frontend (Angular)
 ↓
@@ -54,7 +50,7 @@ MongoDB + Astrology API
 
 ---
 
-# 📂 Pages
+# Pages
 
 ## Home
 Displays horoscope predictions.
@@ -65,7 +61,7 @@ Contains:
 - List Members component
 
 ## About
-Project information.
+Astropage information.
 
 ---
 
