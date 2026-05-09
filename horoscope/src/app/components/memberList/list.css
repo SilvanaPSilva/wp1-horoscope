@@ -1,0 +1,8 @@
+.members-box {
+  width: 100%;
+  border-radius: 20px;
+}
+
+td {
+  word-break: break-word;
+}

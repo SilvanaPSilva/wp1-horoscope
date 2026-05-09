@@ -1,0 +1,18 @@
+.member-form {
+  max-width: 700px;
+  border-radius: 10px;
+}
+
+.member-form label {
+  font-weight: 500;
+}
+
+.member-form input {
+  border-radius: 5px;
+}
+
+.member-form button {
+  width: 30%;
+  margin-top: 10px;
+  border-radius: 5px;
+}

@@ -38,11 +38,20 @@ async function getMonthly(req, res) {
         const result = await horoscopeService.getMonthlyHoroscope(sign);
         res.json(result);
     } catch (error) {
+        console.log('STATUS:', error.response?.status);
+        console.log('DATA:', error.response?.data);
+        console.log('MESSAGE:', error.message);
+
         res.status(500).json({
             error: error.response?.data || error.message
         });
     }
 }
+
+
+
+
+
 
 // Export the controller functions to be used in the routes file
 export { getToday, getTomorrow, getMonthly };

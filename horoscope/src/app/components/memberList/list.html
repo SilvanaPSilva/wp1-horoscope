@@ -1,47 +1,45 @@
-<h2>Members List</h2>
+<div class="card shadow p-4 mx-auto mt-5 members-box">
 
-<table class="members-table">
+  <h2 class="text-center mb-4"> Favorite Members List </h2>
 
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Birthday</th>
-      <th>Sign</th>
-      <th>Action</th>
-    </tr>
-  </thead>
+  <div class="table-responsive">
+    <table class="table table-striped table-hover align-middle">
 
-  <tbody>
+      <thead>
 
-    @for (member of members(); track member._id) {
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Birthday</th>
+          <th>Sign</th>
+          <th>Action</th>
+        </tr>
 
-      <tr>
+      </thead>
 
-        <td>{{ member._id }}</td>
+      <tbody>
 
-        <td>{{ member.name }}</td>
+        @for (member of members(); track member._id) {
 
-        <td>{{ member.birthday }}</td>
+        <tr>
 
-        <td>{{ member.sign }}</td>
+          <td>{{ member._id }}</td>
+          <td>{{ member.name }}</td>
+          <td>{{ member.birthday }}</td>
+          <td>{{ member.sign }}</td>
 
-        <td>
+          <td>
+            <button (click)="deleteMember(member._id)" class="btn btn-outline-danger btn-sm">
+              Delete
+            </button>
+          </td>
 
-          <button
-            (click)="deleteMember(member._id)"
-            class="delete-btn">
+        </tr>
+        }
 
-            Delete
+      </tbody>
 
-          </button>
+    </table>
+  </div>
 
-        </td>
-
-      </tr>
-
-    }
-
-  </tbody>
-
-</table>
+</div>

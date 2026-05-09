@@ -23,6 +23,8 @@ const endpointMonth = '/horoscope_prediction/monthly/:zodiacName'; // Example en
 // Function to call the Astrology API (https://json.astrologyapi.com/v1) + endpoint (sun_sign_prediction/daily,tomorrow, monthly) + zodiac sign
 async function callAstrologyApi(endpoint, sign) {
   const finalUrl = apiUrl+endpoint.replace(':zodiacName', sign); 
+  //https://json.astrologyapi.com/v1 + /horoscope_prediction/monthly/ + :zodiacName
+             //  apiUrl                             +endpoint            .replace(':zodiacName', sign) => :zodiacName >> aries
 
   //const headers = { Authorization: `Basic ${auth}`,'Content-Type': 'application/json'};
   const headers = { 'x-astrologyapi-key': apiKey,'Content-Type': 'application/json'};
@@ -52,3 +54,23 @@ function getMonthlyHoroscope(sign) {
 }
 
 export const horoscopeService = { getTodayHoroscope, getTomorrowHoroscope, getMonthlyHoroscope };
+
+
+    // sun_sign_prediction/daily/:zodiacName (daily/:zodiacName)
+    // http://localhost:3000/horoscope/today/aries
+
+   
+    // sun_sign_prediction/daily/next/:zodiacName (daily/next/:zodiacName)
+    //http://localhost:3000/horoscope/tomorrow/aries  
+
+  
+    //horoscope_prediction/monthly/:zodiacName (monthly/:zodiacName)
+    //http://localhost:3000/horoscope/monthly/aries
+  
+
+    //  } catch (error) {
+    //   console.log('STATUS:', error.response?.status);
+    //   console.log('DATA:', error.response?.data);
+    //   console.error('Astrology API Error:',error.response?.data || error.message);
+
+    // throw error;

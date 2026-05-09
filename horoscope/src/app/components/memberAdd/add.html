@@ -1,42 +1,34 @@
-<div class="card shadow-sm p-4 mb-4 mx-auto" >
+<form #f="ngForm" (ngSubmit)="addMember()" class="card shadow p-4 mx-auto mt-5 member-form">
   <h3 class="text-center mb-4">Favorites Members Form</h3>
 
   <div class="row mb-3 align-items-end">
     <label class="col-sm-3 col-form-label">Name</label>
     <div class="col-sm-9">
-      <input [(ngModel)]="member.name" class="form-control" placeholder="Enter Member Name">
+      <input type="text" name="name" [(ngModel)]="member.name" class="form-control" placeholder="Enter Member Name"
+        required>
     </div>
   </div>
 
   <div class="row mb-3 align-items-end">
     <label class="col-sm-3 col-form-label">Birthday</label>
     <div class="col-sm-9">
-      <input [(ngModel)]="member.birthday" class="form-control" placeholder="Enter Birthday">
+      <input type="text" name="birthday" [(ngModel)]="member.birthday" class="form-control" placeholder="DD/MM/YYYY" pattern="(?:0[1-9]|[12][0-9]|3[01])\/(?:0[1-9]|1[0-2])\/(?:19|20|21)\d{2}" required #birthday="ngModel">
+
+      @if(birthday.invalid && birthday.touched) {
+      <div class="text-danger">
+        Data inválida. Use DD/MM/YYYY.
+      </div>
+      }
     </div>
   </div>
 
   <div class="row mb-3 align-items-end">
     <label class="col-sm-3 col-form-label">Sign</label>
     <div class="col-sm-9">
-      <input [(ngModel)]="member.sign" class="form-control" placeholder="Enter Zodiac Sign">
+      <input type="text" name="sign" [(ngModel)]="member.sign" class="form-control" placeholder="Enter Zodiac Sign" required>
     </div>
-  </div>  
+  </div>
 
-  <button (click)="addMember()" class="btn btn-primary">New Member</button>
+  <button type="submit" class="btn btn-primary" [disabled]="f.invalid"> New Member </button>
   
-</div>
-
-
-<!--  
-
-// 
-
-Bootstrap classes:
-> shadow-lg / shadow / shadow-sm = add large, medium and small shadow to the card
-> p-4 adds padding of 4 units to the card
-> mb-3 adds a margin-bottom of 3 units to the card
-> mx-auto centers the card horizontally
-> max-width: 500px limits the maximum width of the card to 500 pixels
-> text-center centers the text horizontally
-
--->
+</form>
