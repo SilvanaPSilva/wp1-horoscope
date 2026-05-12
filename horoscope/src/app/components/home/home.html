@@ -61,7 +61,7 @@
         </div>
 
         <div class="actions-box">
-            <h2>: : : Second step | Choose which prediction you want : : :</h2>
+            <h2>✦ Choose your prediction ✦</h2>
 
             <div class="buttons-box">
                 <button type="button" class="btn btn-outline-primary btn-md me-4" (click)="getToday()"
@@ -97,13 +97,11 @@
             </div>
         </div>
 
-        <p>result: {{ horoscopeResult ? 'yes' : 'no' }}</p>
-        <p>daily: {{ periodDaily }}</p>
-        <p>monthly: {{ periodMonthly }}</p>
+        <!--  END CHATGPT -->
 
         <div *ngIf="horoscopeResult && periodDaily">
 
-            <h2>{{ horoscopeResult.sun_sign }}</h2>
+            <h2>{{ horoscopeResult.sun_sign | titlecase}}</h2>
             <p>{{ horoscopeResult.prediction_date }}</p>
 
             <div class="card border-success mb-3">
