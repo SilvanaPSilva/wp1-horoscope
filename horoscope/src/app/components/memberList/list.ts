@@ -1,5 +1,5 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { Members } from '../../services/members/members';
+import { MembersService } from '../../services/members/members';
 import { InterfaceMember } from '../../models/interfaceMember';
 
 @Component({
@@ -9,12 +9,12 @@ import { InterfaceMember } from '../../models/interfaceMember';
   styleUrl: './list.css',
 })
 
-export class List implements OnInit {
+export class ListComponent implements OnInit {
 
   members = signal<InterfaceMember[]>([]);
 
   // Inject the Members service to fetch member data
-  constructor(private membersService: Members) { }
+  constructor(private membersService: MembersService) { }
 
   //Initialize the component and fetch the members when the component is loaded
   ngOnInit(): void {
@@ -36,5 +36,4 @@ export class List implements OnInit {
       this.getMembers();
     });
   }
-
 }
