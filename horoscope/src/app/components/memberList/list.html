@@ -1,14 +1,13 @@
 <div class="card shadow p-4 mx-auto mt-5 members-box">
 
-  <h2 class="text-center mb-4"> Favorite Members List </h2>
+  <h2 class="text-center mb-4"> Birthday Zodiac List </h2>
 
   <div class="table-responsive">
     <table class="table table-striped table-hover align-middle">
 
       <thead>
 
-        <tr>
-          <th>Id</th>
+        <tr>          
           <th>Name</th>
           <th>Birthday</th>
           <th>Sign</th>
@@ -21,15 +20,13 @@
 
         @for (member of members(); track member._id) {
 
-        <tr>
-
-          <td>{{ member._id }}</td>
+        <tr>          
           <td>{{ member.name }}</td>
           <td>{{ member.birthday }}</td>
           <td>{{ member.sign }}</td>
 
           <td>
-            <button (click)="deleteMember(member._id)" class="btn btn-outline-danger btn-sm">
+            <button (click)="member._id && deleteMember(member._id)" class="btn btn-outline-danger btn-sm">
               Delete
             </button>
           </td>
