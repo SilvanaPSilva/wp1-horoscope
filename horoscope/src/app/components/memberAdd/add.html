@@ -1,5 +1,5 @@
 <form #f="ngForm" (ngSubmit)="addMember()" class="card shadow p-4 mx-auto mt-5 member-form">
-  <h3 class="text-center mb-4">Favorites Members Form</h3>
+  <h3 class="text-center mb-4">My Zodiac Contacts</h3>
 
   <div class="row mb-3 align-items-end">
     <label class="col-sm-3 col-form-label">Name</label>
@@ -12,11 +12,12 @@
   <div class="row mb-3 align-items-end">
     <label class="col-sm-3 col-form-label">Birthday</label>
     <div class="col-sm-9">
-      <input type="text" name="birthday" [(ngModel)]="member.birthday" class="form-control" placeholder="DD/MM/YYYY" pattern="(?:0[1-9]|[12][0-9]|3[01])\/(?:0[1-9]|1[0-2])\/(?:19|20|21)\d{2}" required #birthday="ngModel">
+      <input type="text" name="birthday" [(ngModel)]="member.birthday" class="form-control" placeholder="DD/MM"
+        pattern="(?:0[1-9]|[12][0-9]|3[01])\/(?:0[1-9]|1[0-2])" required #birthday="ngModel">
 
       @if(birthday.invalid && birthday.touched) {
       <div class="text-danger">
-        Data inválida. Use DD/MM/YYYY.
+        Invalid Date. Use DD/MM.
       </div>
       }
     </div>
@@ -25,10 +26,24 @@
   <div class="row mb-3 align-items-end">
     <label class="col-sm-3 col-form-label">Sign</label>
     <div class="col-sm-9">
-      <input type="text" name="sign" [(ngModel)]="member.sign" class="form-control" placeholder="Enter Zodiac Sign" required>
+      <select name="sign" [(ngModel)]="member.sign" class="form-select" required>
+        <option value="">Choose a Zodiac Sign</option>
+        <option value="Aries">Aries</option>
+        <option value="Taurus">Taurus</option>
+        <option value="Gemini">Gemini</option>
+        <option value="Cancer">Cancer</option>
+        <option value="Leo">Leo</option>
+        <option value="Virgo">Virgo</option>
+        <option value="Libra">Libra</option>
+        <option value="Scorpio">Scorpio</option>
+        <option value="Sagittarius">Sagittarius</option>
+        <option value="Capricorn">Capricorn</option>
+        <option value="Aquarius">Aquarius</option>
+        <option value="Pisces">Pisces</option>
+      </select>
     </div>
   </div>
 
-  <button type="submit" class="btn btn-primary" [disabled]="f.invalid"> New Member </button>
-  
+  <button type="submit" class="btn btn-primary" [disabled]="f.invalid"> Add Birthday Zodiac Contact </button>
+
 </form>
