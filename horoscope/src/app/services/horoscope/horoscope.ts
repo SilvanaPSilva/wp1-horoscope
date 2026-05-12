@@ -8,8 +8,12 @@ import { environment } from '../../../environments/environment';
 
 export class HoroscopeService {
 
-  private apiUrl = `${environment.apiUrl}/horoscope`;
-  //private apiUrl = 'http://localhost:3000/horoscope';
+  /*
+  // Use the deployed backend URL
+  private apiUrl = `${environment.apiUrl}/horoscope`; */
+
+  //Use localhost for local testing
+  private apiUrl = 'http://localhost:3000/horoscope';
 
   constructor(private http: HttpClient) { }
 
