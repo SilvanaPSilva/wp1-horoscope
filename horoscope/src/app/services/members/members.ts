@@ -1,15 +1,17 @@
 import { HttpClient } from '@angular/common/http'; // HttpClient used to communicate with backend API
 import { Injectable } from '@angular/core';
 import { InterfaceMember } from '../../models/interfaceMember';
+import { environment } from '../../../environments/environment.development';
 
 
 @Injectable({
   providedIn: 'root',
 })
 
-export class Members {
+export class MembersService {
   
-  private apiUrl = 'http://localhost:3000/members';
+  //private apiUrl = 'http://localhost:3000/members';
+  private apiUrl = `${environment.apiUrl}/members`;
 
   //Inject the HttpClient to make HTTP requests to the backend API
   constructor(private http: HttpClient) {}
@@ -24,7 +26,7 @@ export class Members {
   }
 
   deleteMember(id: string) {
-    return this.http.delete<{ message: string }>(this.apiUrl + '/' + id);
+    return this.http.delete<{ message: string }>(`${this.apiUrl}/${id}`);
   }
 }
 
