@@ -1,36 +1,45 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Horoscope } from '../../services/horoscope/horoscope';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Members } from '../../services/members/members';
+import { InterfaceMember } from '../../models/interfaceMember';
+
 
 @Component({
   selector: 'app-home',
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule], //WHY NOT MEMBERS, HERE??
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
 
-export class Home {
+export class Home implements OnInit {
 
   sign = '';
+  loading = false;
 
   periodDaily = false;
   periodMonthly = false;
 
-  loading = false;
-
-
   horoscopeResult: any = null;
+  todayBirthdays: InterfaceMember[] = [];/* CHATGP */
 
-  constructor(private horoscopeService: Horoscope) { }
+  constructor(
+    private horoscopeService: Horoscope,
+    private membersService: Members,
+    private cd: ChangeDetectorRef
+  ) { }
+
+  ngOnInit(): void {
+    this.loadTodayBirthdays();
+  }
 
   selectSign(sign: string) {
-  this.sign = sign;
-  this.horoscopeResult = null;
-  this.loading = false;
-  this.periodDaily = false;
-  this.periodMonthly = false;
-}
+    this.sign = sign;
+    this.clearResult();
+  }
 
+  //Method Clear Result
   clearResult() {
     this.horoscopeResult = null;
     this.loading = false;
@@ -38,99 +47,130 @@ export class Home {
     this.periodMonthly = false;
   }
 
+  //Method showup the Birthday Members of the day
+  loadTodayBirthdays() {
+    this.membersService.getMembers().subscribe((data: InterfaceMember[]) => {
+      const today = new Date();
+
+      const day = String(today.getDate()).padStart(2, '0');
+      const month = String(today.getMonth() + 1).padStart(2, '0');
+
+      const todayDate = `${day}/${month}`;
+
+      this.todayBirthdays = data.filter(member =>
+        member.birthday === todayDate
+      );
+    });
+  }
+
   getToday() {
 
-    /* CHATGPT */
     if (!this.sign) {
       alert('Choose a sign first');
       return;
     }
 
-    console.log('SIGN SENT:', this.sign);
-
+    this.clearResult();
     this.loading = true;
-    this.horoscopeResult = null;
-    /* CHATGPT */
 
-    this.periodDaily = true;
-    this.periodMonthly = false;
-
+    console.log('SIGN SENT:', this.sign);
     this.horoscopeService.getToday(this.sign).subscribe({
-      next: (data) => {
-        this.horoscopeResult = data;
-        this.loading = false;
+      next: (data: any) => {
+
+        try {
+
+          if (data.status === false) {
+            alert(data.error);
+            this.loading = false;
+            return;
+          }
+
+          this.horoscopeResult = data;
+          this.periodDaily = true;
+          this.periodMonthly = false;
+          this.loading = false;
+          this.cd.detectChanges();
+
+          console.log('RESULT SAVED');
+
+        } catch (err) {
+
+          console.log('NEXT ERROR:', err);
+
+        }
       },
-      //console.log(data);
-
-      /* CHATGPT */
-      error: (err) => {
-        console.log(err);
-        this.loading = false;
-      }/* CHATGPT */
-
     });
   }
 
+  // TOMORROW
   getTomorrow() {
 
-    /* CHATGPT */
     if (!this.sign) {
       alert('Choose a sign first');
       return;
     }
 
+    this.clearResult();
+    this.loading = true;
+
     console.log('SIGN SENT:', this.sign);
 
-    this.loading = true;
-    this.horoscopeResult = null;
-    /* CHATGPT */
-
-    this.periodDaily = true;
-    this.periodMonthly = false;
-
     this.horoscopeService.getTomorrow(this.sign).subscribe({
-      next: (data) => {
+      next: (data: any) => {
+        console.log('DATA RECEIVED:', data);
+        if (data.status === false) {
+          alert(data.error);
+          this.loading = false;
+          return;
+        }
+
         this.horoscopeResult = data;
+        this.periodDaily = true;
+        this.periodMonthly = false;
         this.loading = false;
+        this.cd.detectChanges();
       },
-      //console.log(data);
 
-      /* CHATGPT */
       error: (err) => {
-        console.log(err);
+        console.log('ERROR:', err);
         this.loading = false;
-      }/* CHATGPT */
-
+        this.cd.detectChanges();
+      }
     });
   }
 
+  // MONTHLY
   getMonthly() {
 
-    /* CHATGPT */
     if (!this.sign) {
       alert('Choose a sign first');
       return;
     }
 
-    console.log('SIGN SENT:', this.sign);
-
+    this.clearResult();
     this.loading = true;
-    this.horoscopeResult = null;
 
-    /* CHATGPT */
-    this.periodDaily = false;
-    this.periodMonthly = true;
-
+    console.log('SIGN SENT:', this.sign);
     this.horoscopeService.getMonthly(this.sign).subscribe({
-      next: (data) => {
+      next: (data: any) => {
+        console.log('DATA RECEIVED:', data);
+        if (data.status === false) {
+          alert(data.error);
+          this.loading = false;
+          return;
+        }
+
         this.horoscopeResult = data;
+        this.periodDaily = false;
+        this.periodMonthly = true;
         this.loading = false;
+        this.cd.detectChanges();
       },
 
       error: (err) => {
-        console.log(err);
-        alert('Error loading horoscope');
+        console.log('ERROR:', err);
         this.loading = false;
+        this.cd.detectChanges();
       }
     });
   }
