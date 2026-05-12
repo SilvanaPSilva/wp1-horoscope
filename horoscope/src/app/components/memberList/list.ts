@@ -1,5 +1,6 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { Members } from '../../services/members/members';
+import { InterfaceMember } from '../../models/interfaceMember';
 
 @Component({
   selector: 'app-list',
@@ -10,11 +11,10 @@ import { Members } from '../../services/members/members';
 
 export class List implements OnInit {
 
-  // Array to store the list of members
-  members = signal<any[]>([]);
+  members = signal<InterfaceMember[]>([]);
 
   // Inject the Members service to fetch member data
-  constructor(private membersService: Members) {}
+  constructor(private membersService: Members) { }
 
   //Initialize the component and fetch the members when the component is loaded
   ngOnInit(): void {
@@ -23,22 +23,18 @@ export class List implements OnInit {
 
   //Method (from Service/Members) to fetch the list of members and store it in the members array
   getMembers() {
-    this.membersService.getMembers().subscribe((data: any) => {
+    this.membersService.getMembers().subscribe((data: InterfaceMember[]) => {
       this.members.set(data);
       console.log(this.members());
     });
   }
 
-  deleteMember(id: string){
+  deleteMember(id: string) {
     this.membersService.deleteMember(id).subscribe((response) => {
-      
-      window.location.reload();
-
       console.log(response);
-
       alert('Member deleted successfully!');
-
       this.getMembers();
     });
   }
+
 }
