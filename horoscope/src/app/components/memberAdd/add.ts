@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Members } from '../../services/members/members';
+import { InterfaceMember } from '../../models/interfaceMember';
 
 
 @Component({
@@ -12,32 +13,34 @@ import { Members } from '../../services/members/members';
 
 export class Add {
 
-  //Object to hold the member data from the form
-  member = {
+  //Reset the member data after adding a member to the backend API  
+  resetMember(): InterfaceMember {
+    return{
     name: '',
     birthday: '',
     sign: ''
+    };
   }
 
+  member: InterfaceMember = this.resetMember();   
+
   //Inject the Members service to use its methods for adding members to the backend API
-  constructor(private membersService: Members) { }
+  constructor(private membersService: Members) {}
 
   //CHATGPT
   isValidDate(dateString: string): boolean {
     const parts = dateString.split('/');
 
-    if (parts.length !== 3) {
+    if (parts.length !== 2) {
       return false;
     }
 
     const day = Number(parts[0]);
     const month = Number(parts[1]) - 1;
-    const year = Number(parts[2]);
+    
+    const date = new Date(2026, month, day);
 
-    const date = new Date(year, month, day);
-
-    return (
-      date.getFullYear() === year &&
+    return (      
       date.getMonth() === month &&
       date.getDate() === day
     );
@@ -58,15 +61,11 @@ export class Add {
 
       alert('Member added successfully!');
 
-      window.location.reload();
+      //window.location.reload();
 
     })
 
-    //Reset the member data after adding a member to the backend API
-    this.member = {
-      name: '',
-      birthday: '',
-      sign: ''
-    };
+    //this.member = this.resetMember();
+
   }
 }
