@@ -1,19 +1,20 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { Horoscope } from '../../services/horoscope/horoscope';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Members } from '../../services/members/members';
+
 import { InterfaceMember } from '../../models/interfaceMember';
+import { HoroscopeService } from '../../services/horoscope/horoscope';
+import { MembersService } from '../../services/members/members';
 
 
 @Component({
   selector: 'app-home',
-  imports: [FormsModule, CommonModule], //WHY NOT MEMBERS, HERE??
+  imports: [FormsModule, CommonModule],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
 
-export class Home implements OnInit {
+export class HomeComponent implements OnInit {
 
   sign = '';
   loading = false;
@@ -25,8 +26,8 @@ export class Home implements OnInit {
   todayBirthdays: InterfaceMember[] = [];/* CHATGP */
 
   constructor(
-    private horoscopeService: Horoscope,
-    private membersService: Members,
+    private horoscopeService: HoroscopeService,
+    private membersService: MembersService,
     private cd: ChangeDetectorRef
   ) { }
 
