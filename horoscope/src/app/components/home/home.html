@@ -9,55 +9,17 @@
         <div class="signs-header">
             <div class="signs-container" role="group" aria-label="Zodiac radio toggle button group">
 
-                <input type="radio" class="btn-check" name="sign" id="aries" [checked]="sign === 'aries'"
-                    (change)="selectSign('aries')">
-                <label class="btn btn-outline-primary" for="aries">♈ Aries</label>
+                <div *ngFor="let s of signs">
+                    <input type="radio" class="btn-check" name="sign" [id]="s.id" [checked]="sign === s.id"
+                        (change)="selectSign(s.id)">
 
-                <input type="radio" class="btn-check" name="sign" id="taurus" [checked]="sign === 'taurus'"
-                    (change)="selectSign('taurus')">
-                <label class="btn btn-outline-primary" for="taurus">♉ Taurus</label>
-
-                <input type="radio" class="btn-check" name="sign" id="gemini" [checked]="sign === 'gemini'"
-                    (change)="selectSign('gemini')">
-                <label class="btn btn-outline-primary" for="gemini">♊ Gemini</label>
-
-                <input type="radio" class="btn-check" name="sign" id="cancer" [checked]="sign === 'cancer'"
-                    (change)="selectSign('cancer')">
-                <label class="btn btn-outline-primary" for="cancer">♋ Cancer</label>
-
-                <input type="radio" class="btn-check" name="sign" id="leo" [checked]="sign === 'leo'"
-                    (change)="selectSign('leo')">
-                <label class="btn btn-outline-primary" for="leo">♌ Leo</label>
-
-                <input type="radio" class="btn-check" name="sign" id="virgo" [checked]="sign === 'virgo'"
-                    (change)="selectSign('virgo')">
-                <label class="btn btn-outline-primary" for="virgo">♍ Virgo</label>
-
-                <input type="radio" class="btn-check" name="sign" id="libra" [checked]="sign === 'libra'"
-                    (change)="selectSign('libra')">
-                <label class="btn btn-outline-primary" for="libra">♎ Libra</label>
-
-                <input type="radio" class="btn-check" name="sign" id="scorpio" [checked]="sign === 'scorpio'"
-                    (change)="selectSign('scorpio')">
-                <label class="btn btn-outline-primary" for="scorpio">♏ Scorpio</label>
-
-                <input type="radio" class="btn-check" name="sign" id="sagittarius" [checked]="sign === 'sagittarius'"
-                    (change)="selectSign('sagittarius')">
-                <label class="btn btn-outline-primary" for="sagittarius">♐ Sagittarius</label>
-
-                <input type="radio" class="btn-check" name="sign" id="capricorn" [checked]="sign === 'capricorn'"
-                    (change)="selectSign('capricorn')">
-                <label class="btn btn-outline-primary" for="capricorn">♑ Capricorn</label>
-
-                <input type="radio" class="btn-check" name="sign" id="aquarius" [checked]="sign === 'aquarius'"
-                    (change)="selectSign('aquarius')">
-                <label class="btn btn-outline-primary" for="aquarius">♒ Aquarius</label>
-
-                <input type="radio" class="btn-check" name="sign" id="pisces" [checked]="sign === 'pisces'"
-                    (change)="selectSign('pisces')">
-                <label class="btn btn-outline-primary" for="pisces">♓ Pisces</label>
+                    <label class="btn btn-outline-primary" [for]="s.id">
+                        {{ s.label }}
+                    </label>
+                </div>
 
             </div>
+
         </div>
 
         <div class="actions-box">

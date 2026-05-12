@@ -19,6 +19,22 @@ export class HomeComponent implements OnInit {
   sign = '';
   loading = false;
 
+  signs = [
+    { id: 'aries', label: '♈ Aries' },
+    { id: 'taurus', label: '♉ Taurus' },
+    { id: 'gemini', label: '♊ Gemini' },
+    { id: 'cancer', label: '♋ Cancer' },
+    { id: 'leo', label: '♌ Leo' },
+    { id: 'virgo', label: '♍ Virgo' },
+    { id: 'libra', label: '♎ Libra' },
+    { id: 'scorpio', label: '♏ Scorpio' },
+    { id: 'sagittarius', label: '♐ Sagittarius' },
+    { id: 'capricorn', label: '♑ Capricorn' },
+    { id: 'aquarius', label: '♒ Aquarius' },
+    { id: 'pisces', label: '♓ Pisces' },
+  ];
+
+
   periodDaily = false;
   periodMonthly = false;
 
