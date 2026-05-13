@@ -13,7 +13,7 @@ export class HoroscopeService {
   private apiUrl = `${environment.apiUrl}/horoscope`; */
 
   //Use localhost for local testing
-  private apiUrl = 'http://localhost:3000/horoscope';
+  private apiUrl = 'https://52.18.34.156/horoscope';
 
   constructor(private http: HttpClient) { }
 
