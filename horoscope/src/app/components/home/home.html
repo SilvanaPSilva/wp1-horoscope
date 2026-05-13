@@ -6,23 +6,17 @@
             <h2>: : : First step | Choose your sign : : :</h2>
         </div>
 
-        <div class="signs-header">
-            <div class="signs-container" role="group" aria-label="Zodiac radio toggle button group">
-
-                <div *ngFor="let s of signs">
-                    <input type="radio" class="btn-check" name="sign" [id]="s.id" [checked]="sign === s.id"
-                        (change)="selectSign(s.id)">
-
-                    <label class="btn btn-outline-primary" [for]="s.id">
-                        {{ s.label }}
-                    </label>
-                </div>
-
+        <div class="signs-container">
+            <div class="sign-grid">
+                <ng-container *ngFor="let s of signs">
+                    <input type="radio"  class="btn-check" name="sign" [id]="s.id" [checked]="sign === s.id"(change)="selectSign(s.id)" >
+                    <label class="sign-item" [for]="s.id"> {{ s.label }} </label>
+                </ng-container>
             </div>
-
         </div>
 
         <div class="actions-box">
+
             <h2>✦ Choose your prediction ✦</h2>
 
             <div class="buttons-box">
@@ -115,11 +109,9 @@
                 <h3>{{ horoscopeResult.sun_sign | titlecase }} - {{ horoscopeResult.prediction_month }}</h3>
 
                 <div class="card border-success mb-3" *ngFor="let item of horoscopeResult.prediction">
-
                     <div class="card-body text-success">
                         <p class="card-text">{{ item }}</p>
                     </div>
-
                 </div>
             </div>
         </div>

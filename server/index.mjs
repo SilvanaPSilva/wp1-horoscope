@@ -2,6 +2,9 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 
+// Import DB connection (MongoDB Driver)
+import db from './db.mjs';
+
 import horoscopeRoutes from './routes/horoscopeRoutes.mjs';
 import memberRoutes from './routes/memberRoutes.mjs';
 
@@ -21,7 +24,13 @@ app.get('/', (req, res) => {
     res.send('Hello, World - Express server running!!');
 })
 
-//Star server
-app.listen(3000, () => {
-    console.log(`Server is running on http://localhost:3000`);
+//Star server (http://localhost:3000)
+app.listen(3000, '0.0.0.0', () => {
+    console.log(`Server is running on port 3000`);
+
+/* EC2
+    Type: Custom TCP
+    Port: 3000
+    Source: 0.0.0.0/0
+    */
 });

@@ -49,10 +49,6 @@ async function getMonthly(req, res) {
 }
 
 
-
-
-
-
 // Export the controller functions to be used in the routes file
 export { getToday, getTomorrow, getMonthly };
 
